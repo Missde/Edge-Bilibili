@@ -31,4 +31,4 @@
 -------------------------
 **##捐赠**
 -
-![图片预览](https://github.com/Missde/Edge-Bilibili/blob/main/edge/pic/dashang.jpg)
+![图片预览](https://github.com/Missde/Edge-Bilibili/blob/main/Edge-Bilibili/pic/dashang.jpg)
