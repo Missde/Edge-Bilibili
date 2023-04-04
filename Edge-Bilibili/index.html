@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BiliBili变形</title>
+<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="js/missde.js"></script>
+<script type="text/javascript" src="js/bilibili.js"></script>
+<style type="text/css">
+body,ol,ul,li,p,dl,dt,dd,h1,h2{list-style:none;margin:0;padding:0;}
+body{padding:10px;}
+a{text-decoration:none;color:#1060d3;cursor:pointer;}
+a:hover{color:#ff6600;}
+u,a,del,i{text-decoration:none;font-style: normal}
+
+input{height:30px;font-family:Arial;margin: 0;border:1px solid #ccc;border-radius:3px;}
+input[type="submit"]{display:block;border:0;cursor:pointer;background:#D4E5F3}
+input[type="submit"]:hover{background:#A7D1ED;}
+input[type="checkbox"]{height:20px;width:20px;padding:0;margin:0;}
+input:focus {outline: none;}
+
+a,b,li,li div,del,p,input{-webkit-transition:all .3s linear}
+img{-webkit-transition:all .15s linear}
+.bili ul li:hover img{-webkit-transform: scale(.95);}
+input,img{vertical-align:middle;}
+
+.missde{clear:both;}
+
+
+.missde .tab{margin:0;padding:0;border-top:1px solid #fff;user-select: none;}
+.missde .tab .menu{float:left;}
+.missde .tab .menu a{min-width:100px;border:3px solid #DAE2E5;color:#DAE2E5;border-top-left-radius:15px;border-top-right-radius:15px;font-size:20px;float:left;padding:0 20px;margin:0px 0 0 30px;display:block;height:54px;line-height:54px;text-align:center;border-bottom:none;}
+.missde .tab .menu a:hover{background:#f4f7f8;color:#68cce9;}
+.missde .tab .menu .on{border:3px solid #68cce9;border-bottom-color:#fff;color:#68cce9}
+.missde .tab .menu .on:hover{background:#fff;}
+.missde .tab .menu a img{height:40px;margin-top:0px;}
+.missde .tab .menu a.bililogo:after{font-weight:800;margin:10px 0 0 10px;content:"变形";float:right;display:inline-block;line-height:20px;width:20px;font-size:18px;}
+
+.missde .rbox {position:absolute;top:10px;left:200px;padding-right:100px;}
+.missde .rbox .user{position:absolute;top:0px;right:20px;z-index:2;width:50px;height:50px;}
+.missde .rbox .user img{border:1px solid #68cce9;float:right;width:50px;height:50px;vertical-align:middle;border-radius:50%;}
+.missde .rbox .user i{position:absolute;bottom:0;right:0;font-size:15px;background:#f00;color:#fff;text-align:center;min-width:15px;padding:0 3px;border-radius:50%;}
+.missde .rbox .user .login{color:#222;padding:5px;display:block;border-radius:50%;border:1px solid #ddd;text-align:center;}
+
+.missde .rbox form{margin-bottom:20px;height:52px;overflow:hidden;float:left;}
+.missde .rbox form input{display:inline-block;margin:0 10px;height:50px;text-align:center;}
+.missde .rbox form input[type='text']{padding:0 20px;width:20%;max-width:280px;font-size:20px;border-radius:6px;}
+.missde .rbox form input[type='submit']{margin:0;width:100px;font-size:20px;border-radius:6px;cursor:pointer;background:#D4E5F3;border:0}
+.missde .rbox form input[type='submit']:hover{background:#68cce9;}
+.missde .rbox form div {display:inline;padding:15px 0;}
+.missde .rbox form div span{position:relative;display:inline-block;padding:5px 0;margin-bottom:20px;}
+.missde .rbox form div span del{opacity:0}
+.missde .rbox form div span del:before{cursor:pointer;content:"×";text-align:center;margin-top:-6px;position:absolute;right:0;top:0;width:15px;height:15px;line-height:14px;display:block;border-radius:50%;background:#222;color:#fff;}
+.missde .rbox form div span a{display:inline-block;background:#D4E5F3;padding:5px 10px;border-radius:5px;margin:0 3px;color:#000;}
+.missde .rbox form div span a:hover{background:#68cce9}
+.missde .rbox form div span:hover del{opacity:1;}
+.missde .rbox form p{display:inline-block;position:relative;width:35px;text-align:center;}
+.missde .rbox form p label{display:block;position:absolute;width:100%;font-size:12px;}
+.missde .rbox form p label:nth-child(1){margin-top:-27px;}
+.missde .rbox form p label:nth-child(2){margin-top:-10px;}
+.missde .rbox form p label:nth-child(3){margin-top:5px;}
+.missde .rbox form p label.on{background:#D4E5F3;border-radius:5px}
+
+.missde .box{margin-top:56.9px;border:3px solid #68cce9;min-height:700px;border-radius:5px;}
+.missde .box dl{overflow:hidden;position:relative;}
+
+
+
+.missde .setup ul li{position:relative;display:inline-block;padding:0;}
+.missde .setup ul li del{opacity:0;position:absolute;right:0;top:0;width:30px;height:100%;background:#222;}
+.missde .setup ul li del:before{cursor:pointer;content:"×";font-size:20px;line-height:25px;text-align:center;display:block;color:#fff;}
+
+.missde .setup ul li:hover a{font-size:9px;}
+.missde .setup ul li:hover del{opacity:1;}
+
+
+
+
+
+.bili{padding:10px 0 20px 20px;clear:both;}
+.bili dt{width:100px;float:left;overflow:hidden;user-select: none;}
+.bili dt b{cursor:pointer;margin-bottom:10px;font-size:17px;font-weight:400;display:block;height:40px;line-height:40px;border:1px solid #ddd;border-radius:5px;text-align:center;margin-right:20px;}
+.bili dt b.on,.bili dt b.on:hover{background:#68cce9;color:#fff;}
+.bili dt b:hover{background:#D4E5F3;color:#68cce9;border-color:#D4E5F3}
+
+
+
+.scro dt{position:fixed;top:20px}
+.scro dd{margin-left:100px;}
+.scro .group{position:fixed;top:0px;padding-top:20px;padding-bottom:10px;}
+
+
+.bili dd{display:none;overflow:hidden;}
+.bili dd.on{display:block;}
+
+.bili ul{overflow:hidden;}
+
+.bili ul li{border:1px solid #ddd;background:#fff;width:235px;height:170px;overflow:hidden;float:left;position:relative;margin:0 20px 20px 0;border-radius:5px;}
+.bili ul li a{display:block;}
+.bili ul li a u{display:block;height:130px;overflow:hidden;}
+.bili ul li a img{width:100%;height:130px;display:block;border-radius:5px;}
+.bili ul li a b{background:#fff;position:absolute;left:0;bottom:0;width:100%;text-align:center;color:#222;font-weight:400;height:40px;line-height:20px;overflow:hidden;padding:0;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+
+.bili ul li a b i{display:block;height:5px;background:#222;width:0;position:absolute;bottom:0;left:0}
+
+.bili ul li .hui img{filter: grayscale(80%);opacity:.3}
+.bili ul li p{right:0;opacity:1;text-align:center;width:100%;display:block;position:absolute;margin-top:-20px;height:20px;line-height:20px;overflow:hidden;background:rgba(0,0,0,.5);color:#fff;}
+
+.bili ul li:hover,.bili ul li:hover b{background:#000;color:#fff;}
+.bili ul li:hover .hui img{filter:none;opacity:1;}
+.bili ul li:hover div.l{left:-100px;}
+.bili ul li:hover p{opacity:0;right:-300px;}
+.bili ul li:hover a b i{background:#68cce9;}
+
+.bili ul li .old b:before{content:"旧";padding:0 5px;background:#999;color:#fff;float:left;font-size:20px;height:40px;line-height:40px;}
+.bili ul li .new b:before{content:"新";padding:0 5px;background:#68cce9;color:#fff;float:left;font-size:20px;height:40px;line-height:40px;}
+.bili ul li .new.hui b:before{display:none;}
+
+
+.bili ul li div.l{position:absolute;top:0;left:0;}
+.bili ul li div.l b,
+.bili ul li div.l u,
+.bili ul li div.l span{font-size:12px;clear:both;margin-bottom:1px;font-weight:400;display:block;float:left;padding:0 5px;border-bottom-right-radius:5px;background:rgba(0,0,0,.5);color:#fff;}
+.bili ul li div.l b:before{content:"◈";margin-right:3px;font-size:14px;}
+.bili ul li div.l u:before{content:"❤";margin-right:3px;}
+.bili ul li div.l span:before{content:"♬";margin-right:3px;}
+.bili ul li div.l span{display:block}
+
+
+.bili ul li div.r{position:absolute;top:0;right:-100px;}
+.bili ul li div.r b,.bili ul li div.r del,.bili ul li div.r i,.bili ul li div.r a{float:right;clear:both;font-weight:400;cursor:pointer;display:block;padding:5px 0 0 5px;line-height:18px;height:18px;width:60px;background:rgba(0,0,0,.6);color:#fff;}
+.bili ul li div.r del{border-bottom-left-radius:5px;color:#fff;}
+.bili ul li div.r b:hover,.bili ul li div.r del:hover,.bili ul li div.r i:hover,.bili ul li div.r a:hover{background:#68cce9;}
+.bili ul li div.r img{width:50px;height:17px;}
+.bili ul li div.r .kanbili:hover{background:#fff;}
+
+.bili ul li:hover div.r{right:0px;}
+.bili ul li.upzhu{border-color:#68cce9;}
+.bili ul li.upzhu,.bili ul li.upzhu b{background:#68cce9;}
+
+
+.bili .groupbox{height:80px;width:auto;position: relative;}
+.bili .group {background:#fff;z-index:1;width:100%;user-select: none;}
+.bili .group div{border-bottom: 1px solid #ddd;height: 30px;line-height: 30px;font-size:12px;margin-bottom: 5px;overflow:hidden;}
+.bili .group div b{font-weight:400;font-size: 14px;}
+.bili .group p{display:inline;}
+.bili .group p a{color:#333;background:#d4e5f3;padding:5px 10px;border-radius:5px;margin:0 3px;}
+.bili .group p a.on{background:#68cce9;color:#fff;}
+
+
+
+
+.bili dd .r b:before{content:"📀播放单"}
+.bili dd .r del:before{content:"🗑️ 屏蔽"}
+.bili dd .r i:before{content:"⭐ 收藏"}
+.bili dd .r i.on:before{content:"⭐已收藏"}
+
+
+.bili dd.lishi .r del:before{content:"❌ 删除"}
+.bili dd.playing .r del:before{content:"❌ 删除"}
+.bili dd.playing li a{display:block;}
+.bili dd.playing .r b:before{content:"🔁播放单"}
+
+.bili dd.setup .r del:before{content:"恢复"}
+.bili dd.fav .r i:before{content:"❌ 收藏"}
+
+
+.bili dd.setup{padding-bottom:100px;font-size:14px;}
+.bili dd.setup ul,
+.bili dd.setup div.title,
+.bili dd.setup div.author{max-height:200px;overflow-x:hidden;overflow-y:auto;margin-top:40px;border:1px dashed #ddd;padding:5px;}
+
+.bili dd.setup ul:before{content:"屏蔽视频" attr(count);font-size:17px;display:block;clear:both;padding-bottom:5px;position:absolute;margin-top:-30px;}
+.bili dd.setup ul li{border:1px solid #ddd;width:110px;height:30px;margin:0 10px 10px 0;}
+.bili dd.setup ul li a{padding:0px 0 0 5px;line-height:30px;color:#000;}
+.bili dd.setup ul li:hover{background:#fff;background:#D4E5F3;}
+.bili dd.setup .r b{display:none;}
+.bili dd.setup .r i{display:none;}
+.bili dd.setup .r del{border-top-left-radius:5px;}
+
+.bili dd.setup div input[type='text']{border:1px solid #ddd;width:100px;padding:0 5px;height:30px;margin:0 10px 10px 0;}
+
+
+.bili dd.setup div.title:before,
+.bili dd.setup div.author:before{content:"屏蔽词" attr(count);font-size:15px;display:block;clear:both;padding-bottom:5px;position:absolute;margin-top:-30px;}
+.bili dd.setup div.author:before{content:"屏蔽UP主" attr(count);}
+
+
+.bili dd.setup div.btn h3{margin:0;padding:0;font-size:17px;}
+.bili dd.setup div.btn div{clear:both;overflow:hidden;padding:5px 0;min-height:35px;border-bottom:1px solid #eee;line-height:35px;}
+.bili dd.setup div.btn div span{line-height:35px;color:#1fc0ee}
+.bili dd.setup div.btn div label{display:inline-block;margin-right:10px;}
+.bili dd.setup div.btn div .a{font-size:14px;text-align:center;border-radius:5px;min-width:80px;padding:0 10px;margin-bottom:5px;line-height:30px;height:30px;border:0;margin-right:20px;float:left;background:#68cce9;color:#fff;cursor:pointer;}
+.bili dd.setup div.btn div .a:hover{background:#1B7BB9;}
+.bili dd.setup div.btn div input[type='checkbox']{width:15px;padding:0;height:15px;margin:0 5px 0 0}
+.bili dd.setup div.dashang img{height:150px;}
+
+.file{display:inline-block;white-space:nowrap;position:relative;width:100px;background:#68cce9;color: #fff;font-size:14px;text-align:center;border-radius:5px;overflow: hidden;text-decoration: none;cursor:pointer;}
+.file:hover{color:#fff;text-decoration:none;background:#1B7BB9}
+.file input{cursor:pointer;position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;display:block;width:100%;height:20px;overflow:hidden;font-size:0px;}
+
+
+/* 粉色 */
+.fense .tab .menu a.bililogo:after{color:#F56DAC;}
+.fense .tab .menu a.on{border-color:#F56DAC;border-bottom-color:#fff;}
+.missde .rbox .user img,
+.fense .box{border-color:#F56DAC;}
+
+.fense .tab .rbox input[type='submit']:hover,
+.fense .tab .rbox div span a:hover,
+.fense .bili dt b.on,
+.fense .bili dt b.on:hover,
+.fense .bili dd.setup div.btn div a:hover,
+.fense .bili ul li a b i,
+.fense .bili ul li div.r b:hover,
+.fense .bili ul li div.r del:hover,
+.fense .bili ul li div.r i:hover,
+.fense .bili ul li a.new b:before,
+.fense .bili .group p a.on
+{background:#F56DAC;color:#fff;}
+
+.fense .tab .menu a:hover{background:#f1f1f1;color:#F56DAC;border-color:#f3e1e9;}
+.fense .tab .menu a.on:hover{border-color:#F56DAC;border-bottom-color:#fff;}
+
+.fense .bili dt b:hover{background:#FCBFDB;color:#F56DAC;border-color:#FCBFDB}
+.fense .bili ul li:hover,.fense .bili ul li:hover b{background:#000;color:#fff;}
+
+.fense .tab .rbox input[type='submit'],
+.fense .tab .rbox div span a,
+.fense .tab .rbox form p label.on,
+.fense .bili .group p a,
+.fense .bili dd.setup div.btn div a,
+.fense .bili dd.setup a:hover{background:#f3e1e9;color:#333;}
+.fense .bili dd.setup a,
+.fense .bili dd.setup div input[type='text']{color:#222}
+.fense .bili dd.setup ul li:hover{border-color:#F56DAC}
+.fense .bili dd.setup div.btn div span{color:#F56DAC}
+
+</style>
+</head>
+<body>
+<div class="missde">
+	<div class="tab">
+		<div class="menu"></div>
+		<div class="rbox"></div>
+</div>
+	<div class="box"></div>
+</div>
+
+

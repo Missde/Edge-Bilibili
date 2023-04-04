@@ -1,0 +1,40 @@
+{
+	"manifest_version": 3,
+	"name": "BiliBili变形",
+	"description": "让bilibili像汽车人一样变形，让BiliBili在浏览器上更方便。",
+	"author":"Missde",
+	"version": "1.0",
+	"background": {
+		"service_worker":"js/background.js"
+	},
+	"action": {
+		"default_icon": "pic/1.png",
+		"default_title": "BiliBili变形"
+		//"default_popup":"index.html"
+	},
+	"icons": {
+		"128": "pic/1.png"
+	},
+	"host_permissions": [ "*://*.bilibili.com/*"],
+	"content_scripts": [
+		{"matches": ["https://www.bilibili.com/blackboard/privacy-pc.html?/*/"],"js": ["js/jquery-3.6.3.min.js","js/bili_player.js"],"all_frames": true}
+	],
+	"permissions": [
+		"activeTab","tabs",
+		"cookies","storage",
+		"scripting",
+		"system.display"
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [ "js/jquery-3.6.3.min.js" ],
+			"matches": [ "*://*.bilibili.com/*" ]
+		}
+	],
+	"options_ui": {
+		"page": "index.html",
+		"open_in_tab": true
+	}
+}
+
+

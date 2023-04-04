@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BiliBili变形</title>
+<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="js/missde.js"></script>
+<script type="text/javascript" src="js/bilibili.js"></script>
+<link rel="icon" type="image/png" href="/pic/no.png">
+<style type="text/css">
+body{margin:0;padding:0;background:#000;overflow:hidden;}
+u,a{text-decoration:none;color:#000;}
+.player:hover .l,.player:hover .r{opacity:0.2;}
+.player div{-webkit-transition:all .3s linear;}
+.player .video{margin:0 auto;width:100%;}
+.player .btn{opacity:0;z-index:1;position:absolute;top:0;right:0;background:rgba(0,0,0,.2);padding:0 10px;}
+.player .btn a{display:block;text-align:center;border-radius:5px;width:56px;background:#fff;}
+.player .btn a:hover,.player a.on{background:#68cce9;cursor:pointer;}
+.player .l{left:0;right:auto;width:100px;height:30px;overflow:hidden;opacity:0;}
+.player .l:hover{width:300px;height:100%;overflow:auto;opacity:1;}
+
+
+.player .l a{margin-top:5px;padding:5px 10px;width:auto;text-align:left;}
+
+.player:hover .r{opacity:1;}
+.player .r{height:52px;overflow:hidden;opacity:0;border-bottom-left-radius:5px;}
+.player .r:hover{height:100%;opacity:1;border-bottom-left-radius:0;}
+.player .r a{margin-top:10px;padding:5px 0px;}
+.player .r a.fav:before{content:"去收藏"}
+.player .r a.fav.on:before{content:"已收藏"}
+.player .r a.zan:before{content:"去点赞"}
+.player .r a.zan.on:before{content:"已点赞"}
+.player .r a.toubi:before{content:"去投币"}
+.player .r a.toubi.on:before{content:"已投币" attr(bi)}
+.player .r a.ing{background:#ddd;}
+.player .r a.ing:before{content:"请稍等";color:#666;}
+.player .r a.suijikan{display:none;}
+.player .r a.kanbili:hover{background:#eee;}
+
+.xianguan{border:10px solid #fff;border-radius:10px;left:12%;top:15%;;width:70%;height:70%;min-width:430px;max-height:70%;overflow:hidden;z-index:2;display:none;background:#fff;position:fixed;}
+.xianguan ul{width:102%;height:100%;overflow:hidden;margin:0;padding:0;list-style-type:none;overflow:hidden;overflow-y:auto;}
+.xianguan li{width:200px;height:120px;position:relative;margin:0 10px 10px 0;float:left;padding:0;border-radius:5px;overflow:hidden;}
+.xianguan li img{width:100%;-webkit-transition:all .15s linear}
+.xianguan li a{cursor:pointer;}
+.xianguan li a span{-webkit-transition:all .15s linear;text-align:center;background:rgba(255,255,255,.8);color:#222;position:absolute;width:180px;padding:0 10px;height:20px;line-height:20px;bottom:0px;left:0;}
+
+.xianguan li a:hover img{-webkit-transform: scale(1.05);}
+.xianguan li a:hover span{background:rgba(0,0,0,.8);color:#fff;height:auto;}
+
+.player .video{margin:0 auto;}
+video:focus {outline: -webkit-focus-ring-color auto 0px;}
+video::-webkit-media-controls-fullscreen-button {display: none !important;}
+
+.fense .btn a:hover,.fense a.on{background:#FCBFDB;cursor:pointer;}
+.fense .layui-layer-btn .layui-layer-btn0{background:#fff;color:#222;border:none;}
+
+.author{opacity:0;position: fixed;width: 50%;left: 25%;bottom:0;text-align: center;color: #fff;font-size: 12px;}
+.author b{margin-right:20px;font-weight:400;}
+.player:hover .author{opacity:1;}
+
+
+
+.ping{text-align:left;}
+.ping li{padding:10px;}
+.ping li div{padding-left:1rem;}
+.ping li div:before{content:"📢";margin-left:-1rpx;}
+
+</style>
+</head>
+<body>
+<div class="player">
+	<div class="btn l"></div>
+	<div class="btn r">
+		<a class="kanbili" target="kanbili" title="打开B站"><img src="pic/bilibili_fense.svg" style="width:46px;"/></a>
+		<a class="zan user"></a>
+		<a class="toubi user"></a>
+		<a class="fav"></a>
+		<a class="pinglun">看评论</a>
+		<a class="xunhuan">循环看<i></i></a>
+		<a class="suijikan">随机看</a>
+	</div>
+	<div class="video">
+		<video id="biliplayer" src="" controls="controls" autoplay autofocus style="width: 100%;height: auto;" disablepictureinpicture=""></video>
+		<iframe id="bili_mp4_iframe" src="" style="display:none;position:absolute;width:100%;height:100%" frameborder="0" scrolling="auto"></iframe>
+	</div>
+	<div class="author"></div>
+</div>
+<div class="xianguan"><ul></ul></div>
+
+</body>
+</html>
