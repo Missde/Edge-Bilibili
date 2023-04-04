@@ -15,7 +15,7 @@
 
 -------------------------
 **##使用方法**
-- 1.下载 https://github.com/Missde/Edge-Bilibili/blob/main/Edge-Bilibili.zip
+- 1.下载 https://github.com/Missde/Edge-Bilibili/raw/main/Edge-Bilibili.zip
 - 2.解压Edge-Bilibili.zip。比如解压到：D:/Edge-Bilibili/
 - 3.用windows10、windows11自带浏览器的地址栏打开 edge://extensions/
 - 4.点击浏览器左侧，开启左侧的 **开发人员模式**
