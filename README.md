@@ -2,7 +2,7 @@
 **基于哔哩哔哩网站的api开发的Edge浏览器插件，界面简洁、下载视频、过滤视频、指定在副屏播放**
 
 -------------------------
-**##功能**
+#### 功能
 
 - 简化显示页面
 - 使用浏览器原生播放器，右键下载视频
@@ -14,8 +14,8 @@
 - 设置自己喜欢的视频，组成播放列表，自动顺序播放
 
 -------------------------
-**##使用方法**
-- 1.下载 https://github.com/Missde/Edge-Bilibili/raw/main/Edge-Bilibili.zip
+#### 使用方法
+- 1.下载Edge-Bilibili.zip [https://github.com/missde/Edge-Bilibili/raw/main/Edge-Bilibili.zip](https://github.com/missde/Edge-Bilibili/raw/main/Edge-Bilibili.zip)
 - 2.解压Edge-Bilibili.zip。比如解压到：D:/Edge-Bilibili/
 - 3.用windows10、windows11自带浏览器的地址栏打开 edge://extensions/
 - 4.点击浏览器左侧，开启左侧的 **开发人员模式**
@@ -23,12 +23,12 @@
 
 
 -------------------------
-**##图片预览**
-![图片预览](https://github.com/Missde/Edge-Bilibili/blob/main/preview.png)
+#### 图片预览
+![图片预览](https://github.com/missde/Edge-Bilibili/raw/main/preview.png)
 
-**##视频预览**
+#### 视频预览
 - https://www.bilibili.com/video/BV1xb411Q7Ue/
 -------------------------
-**##捐赠**
+#### 捐赠
 -
-![图片预览](https://github.com/Missde/Edge-Bilibili/blob/main/Edge-Bilibili/pic/dashang.jpg)
+![图片预览](https://github.com/Missde/Edge-Bilibili/raw/main/Edge-Bilibili/pic/dashang.jpg)
