@@ -28,7 +28,3 @@
 
 #### 视频预览
 - https://www.bilibili.com/video/BV1xb411Q7Ue/
--------------------------
-#### 捐赠
--
-![图片预览](https://github.com/Missde/Edge-Bilibili/raw/main/Edge-Bilibili/pic/dashang.jpg)
